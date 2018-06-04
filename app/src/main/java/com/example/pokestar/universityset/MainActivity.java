@@ -1,7 +1,8 @@
 package com.example.pokestar.universityset;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import com.example.pokestar.universityset.Fragment.MineFragment;
 import com.example.pokestar.universityset.Fragment.NotificationFragment;
 import com.example.pokestar.universityset.Fragment.SchoolFragment;
 
-public class MainActivity extends AppCompatActivity implements MineFragment.OnFragmentInteractionListener , BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends FragmentActivity implements BottomNavigationBar.OnTabSelectedListener {
 
     private BottomNavigationBar bottomNavigationBar;
     int lastSelectedPosition = 0;
@@ -91,9 +92,9 @@ public class MainActivity extends AppCompatActivity implements MineFragment.OnFr
     //设置默认导航栏
 
     private void setDefaultFragment() {
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        mHomePageFragment = HomePageFragment.newInstance("首页");
+        mHomePageFragment = HomePageFragment.newInstance();
         transaction.replace(R.id.ui_container, mHomePageFragment);
         transaction.commit();
     }
@@ -107,24 +108,24 @@ public class MainActivity extends AppCompatActivity implements MineFragment.OnFr
     @Override
     public void onTabSelected(int position) {
         Log.d(TAG,"OnTabSelcted() call with:" + "position = [" + position + "]");
-        FragmentManager fm = this.getFragmentManager();
+        FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         switch (position){
             case 0:
                 if (mHomePageFragment == null){
-                    mHomePageFragment = HomePageFragment.newInstance("首页");
+                    mHomePageFragment = HomePageFragment.newInstance();
                 }
                 transaction.replace(R.id.ui_container, mHomePageFragment);
                 break;
             case 1:
                 if (mSchoolFragment == null) {
-                    mSchoolFragment = SchoolFragment.newInstance("高校");
+                    mSchoolFragment = SchoolFragment.newInstance();
                 }
                 transaction.replace(R.id.ui_container, mSchoolFragment);
                 break;
             case 2:
                 if (mNotificationFragment == null) {
-                    mNotificationFragment = NotificationFragment.newInstance("通知");
+                    mNotificationFragment = NotificationFragment.newInstance();
                 }
                 transaction.replace(R.id.ui_container, mNotificationFragment);
                 break;
@@ -163,8 +164,4 @@ public class MainActivity extends AppCompatActivity implements MineFragment.OnFr
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }

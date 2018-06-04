@@ -1,16 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.pokestar.universityset.Fragment.HomePageFragment">
 
-
-
-    <TextView
-        android:id="@+id/homepage_container"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/homepage_tablayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="首页test"
-        android:layout_gravity="center"/>
+        app:tabIndicatorColor="#00c8ff"
+        app:tabSelectedTextColor="#0357d6"
+        app:tabTextColor="#FF000000"
+        app:tabMode="scrollable"
+        app:tabGravity="center"/>
 
-</FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/homepage_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

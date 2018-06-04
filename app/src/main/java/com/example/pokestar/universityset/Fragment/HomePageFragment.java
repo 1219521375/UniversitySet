@@ -1,45 +1,46 @@
 package com.example.pokestar.universityset.Fragment;
 
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.example.pokestar.universityset.Adapter.FragmentAdapter;
+import com.example.pokestar.universityset.Fragment.HomePage.HotTopicFragment;
+import com.example.pokestar.universityset.Fragment.HomePage.RecommendFragment;
 import com.example.pokestar.universityset.MainActivity;
 import com.example.pokestar.universityset.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomePageFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomePageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomePageFragment extends android.app.Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    private static final String ARG_PARAM1 = "param1";
+
+public class HomePageFragment extends Fragment {
+
+
     private String TAG = MainActivity.class.getSimpleName();
 
-    private String mParam1;
-    private String mParam2;
+    TabLayout mTabLayout;
+    ViewPager mViewPager;
 
-    private OnFragmentInteractionListener mListener;
+    HotTopicFragment mHotTopicFragment;
+    RecommendFragment mRecommendFragment;
+
 
     public HomePageFragment() {
         // Required empty public constructor
     }
 
-    public static HomePageFragment newInstance(String param1) {
+    public static HomePageFragment newInstance() {
         HomePageFragment fragment = new HomePageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -47,9 +48,6 @@ public class HomePageFragment extends android.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"首页onCreate");
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
     }
 
     @Override
@@ -58,51 +56,49 @@ public class HomePageFragment extends android.app.Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
-        Bundle bundle = getArguments();
-        String agrs1 = bundle.getString("agrs1");
-        TextView tv = (TextView)view.findViewById(R.id.homepage_container);
-        //tv.setText(agrs1);
+
+        mTabLayout = (TabLayout)view.findViewById(R.id.homepage_tablayout);
+        mViewPager = (ViewPager)view.findViewById(R .id.homepage_viewpager);
+
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        mRecommendFragment = new RecommendFragment();
+        mHotTopicFragment = new HotTopicFragment();
+
+        mTabLayout.addTab(mTabLayout.newTab().setText("推荐"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("热榜"));
+
+        List<String> titles = new ArrayList<>();
+        titles.add("推荐");
+        titles.add("热榜");
+
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(mRecommendFragment);
+        fragmentList.add(mHotTopicFragment);
+
+        FragmentAdapter adapter = new FragmentAdapter(getChildFragmentManager(), fragmentList, titles);
+        mViewPager.setAdapter(adapter);
+        //关联TabLayout与ViewPager
+        //覆写PagerAdapter的getPageTitle方法，否则Tab没有title
+       mTabLayout.setupWithViewPager(mViewPager);
+       mTabLayout.setTabsFromPagerAdapter(adapter);
+
+
         return view;
     }
 
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
 
         super.onAttach(context);
         Log.d(TAG,"首页onAttact");
-       /* if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }
