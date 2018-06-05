@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.example.pokestar.universityset.Adapter.RecommendAdapter;
+import com.example.pokestar.universityset.Data.Event;
 import com.example.pokestar.universityset.Fragment.HomePageFragment;
 import com.example.pokestar.universityset.R;
 
@@ -25,6 +29,12 @@ public class RecommendFragment extends Fragment {
 
     SliderLayout mSliderLayout;
     PagerIndicator mPagerIndicator;
+
+    RecyclerView mRecyclerView;
+
+    RecommendAdapter mRecommendAdapter;
+
+    List<Event> mEventList;
 
     public static RecommendFragment newInstance(String param1, String param2) {
         RecommendFragment fragment = new RecommendFragment();
@@ -45,9 +55,11 @@ public class RecommendFragment extends Fragment {
         mSliderLayout = (SliderLayout)view.findViewById(R.id.slider);
         mPagerIndicator = (PagerIndicator)view.findViewById(R.id.custom_indicator);
 
+        mRecyclerView = (RecyclerView)view.findViewById(R.id.recommend_recycler_view);
+
         initImageSlider();
 
-
+        initRecyclerView();
 
 
 
@@ -69,6 +81,31 @@ public class RecommendFragment extends Fragment {
 
     }
 
+    private void initRecyclerView() {
+        mEventList = new ArrayList<>();
+
+        for (int i = 0; i < 10; i++) {
+            Event event1 = new Event("太原理工大学举办运动会","2018年某月某日，太原理工大学方式大发噶发噶梵蒂冈梵蒂冈反对撒广泛的sadfadsfsdfdasffadsfgds大噶是否大噶是否大噶是否");
+            Event event2 = new Event("山西大学举办运动会","2018年某月某日，山西大学方式噶是否大噶是否大噶范德萨发大水dfasdfsdf大噶是否大噶是否大噶是否大噶是否大大噶是否噶是否");
+            Event event3 = new Event("北京大学举办运动会","2018年某月某日，北京大学方式4534534153454534353554大噶是否大噶是否大噶是否大噶是否大噶是否大噶是大噶是否大噶是否否");
+            Event event4 = new Event("清华大学举办运动会","2018年某月某日，清华大学方式sdagfasfgadgfdgfdgdfgf大噶是否大噶是否大噶是否大噶是否大噶是否大噶是否大噶是否大噶是否");
+            mEventList.add(event1);
+            mEventList.add(event2);
+            mEventList.add(event3);
+            mEventList.add(event4);
+        }
+
+
+
+
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//这里用线性显示 类似于listview
+        mRecommendAdapter = new RecommendAdapter(mEventList);
+        mRecyclerView.setAdapter(mRecommendAdapter);
+
+
+
+    }
 
     private void initImageSlider() {
 
@@ -113,5 +150,7 @@ public class RecommendFragment extends Fragment {
         mSliderLayout.setCustomAnimation(new DescriptionAnimation());
 
     }
+
+
 
 }

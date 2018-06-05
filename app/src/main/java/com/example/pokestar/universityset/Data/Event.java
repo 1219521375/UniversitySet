@@ -8,11 +8,19 @@ public class Event {
 
     private String depict;
 
-    private String ImageUrl;
+    private String title;
 
-    public Event(String depict, String imageUrl) {
+    public Event(String title, String depict) {
         this.depict = depict;
-        ImageUrl = imageUrl;
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDepict() {
@@ -23,11 +31,5 @@ public class Event {
         this.depict = depict;
     }
 
-    public String getImageUrl() {
-        return ImageUrl;
-    }
 
-    public void setImageUrl(String imageUrl) {
-        ImageUrl = imageUrl;
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.pokestar.universityset;
+package com.example.pokestar.universityset.Base;
 
 import android.app.Application;
 import android.content.Context;
