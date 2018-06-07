@@ -1,16 +1,14 @@
 package com.example.pokestar.universityset.Fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.example.pokestar.universityset.MainActivity;
+import com.example.pokestar.universityset.Activity.MainActivity;
 import com.example.pokestar.universityset.R;
 
 

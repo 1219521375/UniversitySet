@@ -1,10 +1,8 @@
-package com.example.pokestar.universityset;
+package com.example.pokestar.universityset.Activity;
 
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,6 +12,7 @@ import com.example.pokestar.universityset.Fragment.HomePageFragment;
 import com.example.pokestar.universityset.Fragment.MineFragment;
 import com.example.pokestar.universityset.Fragment.NotificationFragment;
 import com.example.pokestar.universityset.Fragment.SchoolFragment;
+import com.example.pokestar.universityset.R;
 
 public class MainActivity extends FragmentActivity implements BottomNavigationBar.OnTabSelectedListener {
 
