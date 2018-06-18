@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.pokestar.universityset.Fragment.HomePage.RecommendFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider"
             android:layout_width="match_parent"
@@ -20,20 +21,19 @@
         <com.daimajia.slider.library.Indicators.PagerIndicator
             android:id="@+id/custom_indicator"
             style="@style/AndroidImageSlider_Corner_Oval_Orange"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginBottom="20dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recommend_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/slider">
+            android:layout_height="wrap_content"
+            >
 
         </android.support.v7.widget.RecyclerView>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 

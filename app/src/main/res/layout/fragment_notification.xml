@@ -4,11 +4,25 @@
     android:layout_height="match_parent"
     tools:context="com.example.pokestar.universityset.Fragment.NotificationFragment">
 
-    <TextView
-        android:id="@+id/notification_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="通知test"
-        android:layout_gravity="center"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通知列表"
+            android:textSize="25dp"
+            android:background="#939292"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/notification_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
 
 </FrameLayout>

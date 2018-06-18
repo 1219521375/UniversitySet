@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.EventActivity"></activity>
+        <activity android:name=".Activity.EventActivity" />
+        <activity android:name=".Activity.SecondActivity" />
+        <activity android:name=".Activity.SetActivity"></activity>
     </application>
 
 </manifest>

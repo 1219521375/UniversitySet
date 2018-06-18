@@ -1,9 +1,12 @@
 package com.example.pokestar.universityset.Activity;
 
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -29,6 +32,8 @@ public class MainActivity extends FragmentActivity implements BottomNavigationBa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
 
         //bottomNavigationBar 相关设置
