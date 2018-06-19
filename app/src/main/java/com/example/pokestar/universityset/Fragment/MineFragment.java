@@ -62,7 +62,7 @@ public class MineFragment extends Fragment {
             public void onClick(View view) {
                 String acount = id_login.getText().toString();
                 String password = password_login.getText().toString();
-                if (acount.equals("15536870529") && password.equals("123456")){
+                if (acount.equals("123456") && password.equals("123456")){
                     Intent intent = new Intent(getActivity(),SecondActivity.class);
                     startActivity(intent);
                 }else {
